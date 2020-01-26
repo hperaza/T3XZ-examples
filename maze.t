@@ -1,8 +1,10 @@
-! Maze program for VT100/220/240 terminals
-!     Builds a maze and then solves it
-!       Looks great on a linux xterm
-!          with a dark background
-!             H. Peraza - 2020
+! Maze program in T3X/Z for VT100/220/240 terminals.
+!
+! Builds a maze and then solves it. Tested on a P112 CPU board (16MHz Z182).
+! Looks great on a linux xterm with a dark background.
+! The delay_msec() routine may require adjusting to match your CPU speed.
+!
+! H. Peraza, Jan 2020.
 
 const FALSE = 0, TRUE = %1;
 

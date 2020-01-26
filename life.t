@@ -1,4 +1,4 @@
-! The Game of Life in T3X/Z.
+! Conway's Game of Life in T3X/Z for VT100 terminals.
 ! Hector Peraza, 2020.
 
 const FALSE = 0, TRUE = %1;
