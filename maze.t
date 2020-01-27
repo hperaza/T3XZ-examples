@@ -5,6 +5,10 @@
 ! The delay_msec() routine may require adjusting to match your CPU speed.
 !
 ! H. Peraza, Jan 2020.
+!
+! Changelog:
+!
+! 27.01.2020 - Pass a seed value via command line - Nils M. Holm
 
 const FALSE = 0, TRUE = %1;
 
@@ -540,10 +544,24 @@ solve() do var r, c, s, n;
 
 end
 
-! Main program
-do var i;
+! Convert ASCII decimal value to binary
+aton(s) do var n;
+    n := 0;
+    while ('0' <= s::0 /\ s::0 <= '9') do
+        n := n * 10 + s::0 - '0';
+        s := s+1;
+    end;
+    return n;
+end
 
-    rseed := 22095;
+! Main program
+do var i, arg::10;
+
+    ie (t.getarg(1, arg, 10) > 0)
+        rseed := aton(arg);
+    else
+        rseed := 22095;
+
     cells := ROWS*COLS;
     aborted := FALSE;
 
