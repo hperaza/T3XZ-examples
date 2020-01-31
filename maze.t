@@ -9,6 +9,8 @@
 ! Changelog:
 !
 ! 27.01.2020 - Pass a seed value via command line - Nils M. Holm
+! 31.01.2020 - Take the check_abort() call out of the inner loop in
+!              delay_msec() - Martin
 
 const FALSE = 0, TRUE = %1;
 
@@ -143,11 +145,12 @@ end
 
 ! Delay routines
 ! *** adjust j loop value to match your CPU speed ***
+! Value given for a 4MHz Z80 system.
 delay_msec(msec) do var i, j, k;
     for (i = 0, msec) do
-        for (j = 0, 50) do
-            check_abort();
-            if (aborted) return;
+        check_abort();
+        if (aborted) return;
+        for (j = 0, 20) do
             k := i + j;  ! do something to kill time
         end
     end
